@@ -1,6 +1,12 @@
 clc
 clear all
 close all
+%% Description:
+% This code minimizes the Rosenbrock function 
+%      100*(y-x.^2).^2+(1-x).^2 
+% Using Newton-Raphson, BFGS, Steepest Descent, Conjugate Descent, Brute Force 
+% 
+% JCMV 2024
 %% III. Optimization: basic problem 
 % Parameters 
 tol      = 1e-6 ;  % Tolerance 

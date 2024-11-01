@@ -2,6 +2,11 @@
 clear all
 close all
 rng(123)
+%% Description:
+% This code solves a Social Planner problem of an endowment economy 
+% and n and m goods
+% 
+% JCMV 2024
 %%
 % Define agents and goods
 n = 8; % Number of agents

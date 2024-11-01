@@ -1,7 +1,13 @@
 clc
 clear all
 close all
-%% Description Here
+%% Description:
+% This code integrates the function 
+%      int_{0}^{100} {exp(-rho*t).*(-exp(-(1-exp(-lambda*t))))}dt
+% Using quadrature methods: Midpoint, Trapezoid and Simpson and 
+% and simulation Monte Carlo methods
+% 
+% JCMV 2024
 %% II. Integration
 % Parameters
 rho    = 0.04  ;
