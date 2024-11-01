@@ -17,6 +17,7 @@ theta_upd_wr   = 0.2 ; % Weight on the new policy
 multigrid = 1; % Set 1 to do multigrid, 0 to solve VFI with 1 grid
     multg = [25 50 100 250]; % If =1, choose the multigrid
 alternate = 1; % Set 1 to Alternate between VF and PF iteration
+    alt_per = 10; % Alternate every alt_per periods
 IRF_plots = 1; % Set 1 to do the IRFs
 %% Parameters
 bbeta  = 0.97;
@@ -194,7 +195,7 @@ for ixmgk = 1:nmgk
                 aux_Ev = Ev_int(ixen,ixex,:);            
 % Step 6-8. Compute the objective function, F. 7. Linearly search the maximum of F, to find \tilde{V}^{j+1}\left(k,i_{-},z,\tau;S\right)             
                 if alternate
-                    if mod(iter,5)==0 || iter == 1
+                    if mod(iter,alt_per)==0 || iter == 1
                         F = (1-bbeta)*u + bbeta*aux_Ev(:)';
                         [Vupd,xpol]       = max(F,[],2);       
                         mV(ixen,ixex)     = Vupd;  
