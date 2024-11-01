@@ -14,11 +14,12 @@ tol            = 1e-6 ;
 theta_upd      = 0.2 ; % Weight on the new policy
 theta_upd_wr   = 0.2 ; % Weight on the new policy
 %% User Parameters
-multigrid = 1; % Set 1 to do multigrid, 0 to solve VFI with 1 grid
+multigrid = 0; % Set 1 to do multigrid, 0 to solve VFI with 1 grid
     multg = [25 50 100 250]; % If =1, choose the multigrid
 alternate = 1; % Set 1 to Alternate between VF and PF iteration
     alt_per = 10; % Alternate every alt_per periods
 IRF_plots = 1; % Set 1 to do the IRFs
+pe = 1; % For Partial equilibrium, sets wages and rental rate at steady state
 %% Parameters
 bbeta  = 0.97;
 aalpha = 0.33;
@@ -215,8 +216,12 @@ for ixmgk = 1:nmgk
 % Step 8. With the policies compute consumption c_{j+1}, labor l_{j+1} for the next iteration
                 mc  = fc(vil(policy),mw,mr,ml,vkk,mtau); mc = max(mc,0);
                 ml = fl(mc,mw,mtau) ;
-                mw = fw(ml,vkk,mz,mtau) ;
-                mr = fr(ml,vkk,mz,mtau) ;            
+                if pe                    
+                else
+                    mw = fw(ml,vkk,mz,mtau) ;
+                    mr = fr(ml,vkk,mz,mtau) ;  
+                end
+%                           
 
 % Step 9. Check convergence 
 error_it  = max(abs([mV_old(:)-mV(:),mw_old(:)-mw(:),mr_old(:)-mr(:),ml_old(:)-ml(:)]));
