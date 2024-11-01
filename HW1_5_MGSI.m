@@ -14,8 +14,8 @@ tol            = 1e-6 ;
 theta_upd      = 0.2 ; % Weight on the new policy
 theta_upd_wr   = 0.2 ; % Weight on the new policy
 %% User Parameters
-multigrid = 0; % Set 1 to do multigrid, 0 to solve VFI with 1 grid
-    multg = [25 50 100 250]; % If =1, choose the multigrid
+multigrid = 1; % Set 1 to do multigrid, 0 to solve VFI with 1 grid
+    multg = [25 50 100 250 500 1000]; % If =1, choose the multigrid
 alternate = 1; % Set 1 to Alternate between VF and PF iteration
     alt_per = 10; % Alternate every alt_per periods
 IRF_plots = 1; % Set 1 to do the IRFs
@@ -108,7 +108,7 @@ if multigrid
     mgk = multg;
     nmgk = length(mgk);
 else 
-    mgk = 25;
+    mgk = 50;
     nmgk = length(mgk);
 end
 for ixmgk = 1:nmgk
